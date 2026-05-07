@@ -208,7 +208,7 @@ button {
 
 .pre-listing-checklist {
   padding: clamp(24px, 5vw, 48px) clamp(18px, 4vw, 56px);
-  background: #fff;
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
 }
 
@@ -227,21 +227,26 @@ button {
 .pre-listing-checklist ul {
   display: grid;
   gap: 10px;
-  margin: 18px 0;
+  margin: 0 0 10px;
   padding: 0;
   list-style: none;
 }
 
-.pre-listing-checklist li {
+.pre-listing-checklist li,
+.pre-listing-checklist .contact-note {
   padding: 14px 16px;
-  background: var(--bg);
+  background: #fff;
   border-left: 4px solid var(--accent);
+}
+
+.pre-listing-checklist li {
   font-weight: 800;
 }
 
 .pre-listing-checklist .contact-note {
   color: var(--muted);
   font-size: 0.96rem;
+  font-weight: 650;
 }
 
 .eyebrow {
@@ -542,6 +547,20 @@ h2 {
 
   .section {
     padding: 34px 14px;
+  }
+
+  .pre-listing-checklist {
+    padding: 24px 14px;
+  }
+
+  .pre-listing-checklist-inner {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .pre-listing-checklist li,
+  .pre-listing-checklist .contact-note {
+    padding: 13px 14px;
   }
 
   .description {
