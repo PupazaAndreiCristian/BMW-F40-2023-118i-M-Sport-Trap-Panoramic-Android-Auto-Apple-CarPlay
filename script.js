@@ -45,10 +45,21 @@ if (track) {
   photoFiles.forEach((fileName, index) => {
     const slide = document.createElement("div");
     slide.className = `carousel-slide${index === 0 ? " active" : ""}`;
+    slide.dataset.src = `poze/${fileName}`;
+    slide.dataset.alt = `BMW F40 poza ${index + 1}`;
 
     const image = document.createElement("img");
-    image.src = `poze/${fileName}`;
-    image.alt = `BMW F40 poza ${index + 1}`;
+    image.alt = slide.dataset.alt;
+    image.decoding = "async";
+
+    if (index === 0) {
+      image.src = slide.dataset.src;
+      image.loading = "eager";
+      image.fetchPriority = "high";
+      slide.dataset.loaded = "true";
+    } else {
+      image.loading = "lazy";
+    }
 
     slide.append(image);
     track.append(slide);
@@ -58,12 +69,31 @@ if (track) {
 const slides = document.querySelectorAll(".carousel-slide");
 let currentSlide = 0;
 
+function loadSlide(index) {
+  const slide = slides[index];
+  const image = slide?.querySelector("img");
+
+  if (!slide || !image || slide.dataset.loaded === "true") {
+    return;
+  }
+
+  image.src = slide.dataset.src;
+  slide.dataset.loaded = "true";
+}
+
+function preloadNearbySlides(index) {
+  loadSlide(index);
+  loadSlide(index + 1);
+  loadSlide(index - 1);
+}
+
 function showSlide(index) {
   if (!slides.length) {
     return;
   }
 
   currentSlide = Math.min(Math.max(index, 0), slides.length - 1);
+  preloadNearbySlides(currentSlide);
 
   slides.forEach((slide, slideIndex) => {
     slide.classList.toggle("active", slideIndex === currentSlide);
