@@ -400,6 +400,10 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow: 0 14px 36px rgba(22, 23, 25, 0.22);
   text-align: right;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
 }
 
 .price-badge strong {
@@ -412,6 +416,12 @@ h2 {
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.price-badge.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(12px);
 }
 
 @media (max-width: 900px) {

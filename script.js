@@ -40,6 +40,8 @@ const track = document.querySelector(".carousel-track");
 const prevButton = document.querySelector(".carousel-prev");
 const nextButton = document.querySelector(".carousel-next");
 const counter = document.querySelector(".carousel-counter");
+const priceBadge = document.querySelector(".price-badge");
+const contactSection = document.querySelector("#contact");
 
 if (track) {
   photoFiles.forEach((fileName, index) => {
@@ -125,3 +127,14 @@ showSlide(0);
 window.addEventListener("pageshow", () => {
   showSlide(0);
 });
+
+if (priceBadge && contactSection) {
+  const contactObserver = new IntersectionObserver(
+    ([entry]) => {
+      priceBadge.classList.toggle("hidden", entry.isIntersecting);
+    },
+    { threshold: 0.18 }
+  );
+
+  contactObserver.observe(contactSection);
+}
