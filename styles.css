@@ -206,6 +206,44 @@ button {
   right: 18px;
 }
 
+.pre-listing-checklist {
+  padding: clamp(24px, 5vw, 48px) clamp(18px, 4vw, 56px);
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.pre-listing-checklist-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  color: var(--ink);
+  font-size: 1.04rem;
+  line-height: 1.6;
+}
+
+.pre-listing-checklist p {
+  margin: 0;
+}
+
+.pre-listing-checklist ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pre-listing-checklist li {
+  padding: 14px 16px;
+  background: var(--bg);
+  border-left: 4px solid var(--accent);
+  font-weight: 800;
+}
+
+.pre-listing-checklist .contact-note {
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: var(--accent);
