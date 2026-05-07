@@ -17,6 +17,9 @@
 
 html {
   scroll-behavior: smooth;
+  touch-action: manipulation;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -25,11 +28,19 @@ body {
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background: var(--bg);
+  touch-action: manipulation;
+  overflow-x: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  touch-action: manipulation;
+}
+
+button {
+  font: inherit;
+  touch-action: manipulation;
 }
 
 .topbar {
@@ -48,9 +59,11 @@ a {
 .nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: clamp(12px, 3vw, 28px);
   color: var(--muted);
   font-weight: 650;
+  width: 100%;
 }
 
 .nav a:hover {
@@ -68,6 +81,7 @@ a {
   background: var(--accent);
   border: 1px solid var(--accent);
   font-weight: 850;
+  white-space: nowrap;
 }
 
 .nav .nav-whatsapp:hover {
@@ -76,7 +90,7 @@ a {
 }
 
 .page-title {
-  padding: clamp(42px, 7vw, 92px) clamp(18px, 4vw, 56px) clamp(26px, 5vw, 56px);
+  padding: clamp(28px, 6vw, 76px) clamp(16px, 4vw, 56px) clamp(22px, 4vw, 48px);
   text-align: center;
   background: var(--panel);
   border-bottom: 1px solid var(--line);
@@ -102,7 +116,7 @@ a {
 .carousel-track {
   position: relative;
   width: 100%;
-  height: clamp(280px, 58vh, 620px);
+  height: clamp(280px, 58dvh, 620px);
   overflow: hidden;
   background: var(--bg);
   border: 1px solid var(--line);
@@ -148,6 +162,7 @@ a {
   cursor: pointer;
   font-size: 2.4rem;
   line-height: 1;
+  -webkit-tap-highlight-color: transparent;
   transform: translateY(-50%);
 }
 
@@ -245,6 +260,8 @@ h2 {
   padding: 0 22px;
   border: 1px solid var(--ink);
   font-weight: 850;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
   transition:
     transform 160ms ease,
     background 160ms ease,
@@ -369,41 +386,164 @@ h2 {
   color: rgba(255, 255, 255, 0.72);
 }
 
+.price-badge {
+  position: fixed;
+  right: clamp(14px, 3vw, 32px);
+  bottom: clamp(14px, 3vw, 32px);
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  min-width: 150px;
+  padding: 13px 16px;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 14px 36px rgba(22, 23, 25, 0.22);
+  text-align: right;
+}
+
+.price-badge strong {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1;
+}
+
+.price-badge span {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 900px) {
   .carousel-track {
-    height: clamp(240px, 54vh, 560px);
+    height: clamp(240px, 54dvh, 560px);
   }
 }
 
 @media (max-width: 620px) {
   .topbar {
+    position: static;
     justify-content: center;
+    padding: 12px;
   }
 
   .nav {
+    justify-content: center;
+    gap: 10px;
     font-size: 0.92rem;
   }
 
+  .nav > a:first-child {
+    display: none;
+  }
+
   .nav .nav-whatsapp {
+    width: 100%;
     min-height: 40px;
     padding: 0 12px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .page-title {
+    padding: 24px 14px 18px;
+  }
+
+  .hero {
+    padding: 10px;
+  }
+
+  .carousel-track {
+    height: min(62dvh, 480px);
   }
 
   .carousel-button {
-    width: 42px;
-    height: 42px;
-    font-size: 2rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1.85rem;
+  }
+
+  .carousel-prev {
+    left: 8px;
+  }
+
+  .carousel-next {
+    right: 8px;
+  }
+
+  .carousel-counter {
+    top: 8px;
+    right: 8px;
+    padding: 6px 9px;
+    font-size: 0.78rem;
   }
 
   h1 {
-    font-size: 1.35rem;
+    font-size: clamp(1.2rem, 6vw, 1.55rem);
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: clamp(1.55rem, 8vw, 2.2rem);
+  }
+
+  .section {
+    padding: 34px 14px;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .spec-list {
     grid-template-columns: 1fr;
   }
 
+  .spec-list li,
+  .feature-list li {
+    padding: 13px 14px;
+  }
+
+  .contact-section {
+    align-items: stretch;
+    padding: 28px 14px;
+  }
+
   .button {
     width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+  }
+
+  .price-badge {
+    right: 10px;
+    bottom: 10px;
+    min-width: 118px;
+    padding: 10px 12px;
+  }
+
+  .price-badge strong {
+    font-size: 1.15rem;
+  }
+
+  .price-badge span {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    font-size: 0.84rem;
+  }
+
+  .carousel-track {
+    height: min(58dvh, 420px);
+  }
+
+  .carousel-button {
+    width: 34px;
+    height: 34px;
+    font-size: 1.65rem;
   }
 }
