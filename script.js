@@ -40,7 +40,7 @@ const track = document.querySelector(".carousel-track");
 const prevButton = document.querySelector(".carousel-prev");
 const nextButton = document.querySelector(".carousel-next");
 const counter = document.querySelector(".carousel-counter");
-const priceBadge = document.querySelector(".price-badge");
+const listingBadges = document.querySelector(".listing-badges");
 const contactSection = document.querySelector("#contact");
 
 if (track) {
@@ -128,10 +128,10 @@ window.addEventListener("pageshow", () => {
   showSlide(0);
 });
 
-if (priceBadge && contactSection) {
+if (listingBadges && contactSection) {
   const contactObserver = new IntersectionObserver(
     ([entry]) => {
-      priceBadge.classList.toggle("hidden", entry.isIntersecting);
+      listingBadges.classList.toggle("hidden", entry.isIntersecting);
     },
     { threshold: 0.18 }
   );

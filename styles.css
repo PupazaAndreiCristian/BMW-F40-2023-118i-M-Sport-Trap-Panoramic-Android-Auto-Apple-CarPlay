@@ -386,11 +386,20 @@ h2 {
   color: rgba(255, 255, 255, 0.72);
 }
 
-.price-badge {
+.listing-badges {
   position: fixed;
   right: clamp(14px, 3vw, 32px);
   bottom: clamp(14px, 3vw, 32px);
   z-index: 30;
+  display: grid;
+  gap: 8px;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+}
+
+.listing-badge {
   display: grid;
   gap: 2px;
   min-width: 150px;
@@ -400,25 +409,21 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow: 0 14px 36px rgba(22, 23, 25, 0.22);
   text-align: right;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease,
-    visibility 180ms ease;
 }
 
-.price-badge strong {
+.listing-badge strong {
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   line-height: 1;
 }
 
-.price-badge span {
+.listing-badge span {
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.price-badge.hidden {
+.listing-badges.hidden {
   visibility: hidden;
   opacity: 0;
   transform: translateY(12px);
@@ -526,18 +531,22 @@ h2 {
     padding: 0 14px;
   }
 
-  .price-badge {
+  .listing-badges {
     right: 10px;
     bottom: 10px;
+    gap: 6px;
+  }
+
+  .listing-badge {
     min-width: 118px;
     padding: 10px 12px;
   }
 
-  .price-badge strong {
+  .listing-badge strong {
     font-size: 1.15rem;
   }
 
-  .price-badge span {
+  .listing-badge span {
     font-size: 0.68rem;
   }
 }
